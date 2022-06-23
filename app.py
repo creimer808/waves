@@ -5,6 +5,9 @@ from argparse import ArgumentParser
 from flask import Flask, Response, render_template
 from gqlalchemy import Memgraph
 
+MEMGRAPH_HOST = os.getenv("MEMGRAPH_HOST", "memgraph")
+MEMGRAPH_PORT = int(os.getenv("MEMGRAPH_PORT", "7687"))
+
 log = logging.getLogger(__name__)
 
 def init_log():
@@ -52,6 +55,8 @@ def main():
     app.run(host=args.host,
             port=args.port,
             debug=args.debug)
+
+
 
 if __name__ == "__main__":
     main()
